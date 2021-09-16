@@ -1,0 +1,84 @@
+@import "~antd/lib/style/themes/default.less";
+
+.header {
+  position: relative;
+  padding: 0 12px 0 0 !important;
+  background: @white !important;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+.logo {
+  position: relative;
+  height: 64px;
+  padding-left: 24px;
+  overflow: hidden;
+  line-height: 64px;
+  background: #002140;
+  transition: all 0.3s;
+
+  img {
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+  }
+  h1 {
+    display: inline-block;
+    margin-left: 12px;
+    color: @white;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+  }
+}
+
+:global(.ant-layout-sider-collapsed) .logo {
+  padding-left: 24px;
+  > a {
+    width: 32px;
+  }
+}
+
+.trigger {
+  padding: 0 24px;
+  font-size: 20px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background: @primary-1;
+  }
+}
+
+@media screen and (max-width: @screen-xs) {
+  .trigger {
+    display: none;
+  }
+}
+
+.right {
+  float: right;
+  height: 100%;
+}
+
+:global {
+  .ant-layout {
+    overflow-x: hidden;
+  }
+}
+
+.menu {
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    width: 160px;
+  }
+}
+
+.sider {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
