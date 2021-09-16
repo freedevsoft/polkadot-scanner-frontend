@@ -59,7 +59,7 @@ const Index = () => {
 
         <Item
           name="password"
-          rules={[{ required: true, message: "Please input your Password!" }, { min: 6}]}
+          rules={[{ required: true, message: "Please input your Password!" }, { min: 8  }]}
           hasFeedback
         >
           <Input

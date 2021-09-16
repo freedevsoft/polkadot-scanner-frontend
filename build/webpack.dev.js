@@ -1,6 +1,6 @@
 /*
- * @ author wanliyunyan
- * @ github  https://github.com/wanliyunyan
+ * @ author freedevsoft
+ * @ github  https://github.com/freedevsoft
  * @ use development
  */
 const webpack = require("webpack");
@@ -25,7 +25,7 @@ module.exports = {
     },
     proxy: {
       "/api/*": {
-        target: "http://localhost:9090",
+        target: "http://localhost:3000",
         secure: false,
         changeOrigin: true,
       },

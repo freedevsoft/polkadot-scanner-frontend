@@ -4,7 +4,7 @@ A admin dashboard application demo based on antd
 Now it is not perfect, then I will continue to improve the project. 
 
 ## Demo
-https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
+https://pokadot-scanner.github.io/dva-typescript-antd-starter-kit/dist
 
 ## Installation
 

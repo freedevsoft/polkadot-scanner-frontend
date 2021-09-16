@@ -63,7 +63,7 @@ const Index = () => {
 
         <Item
           name="password"
-          rules={[{ required: true, message: "Please input your Password!" }, { min: 6}]}
+          rules={[{ required: true, message: "Please input your Password!" }, { min: 8}]}
           hasFeedback
         >
           <Input
@@ -98,6 +98,7 @@ const Index = () => {
           Or <Button type="link" onClick={() => history.push("/user/register")} >register now!</Button>
         </Item>
       </Form>
+      <div className={styles.center}>Example Credential: test@test.com - aaaaaaaa </div>
     </div>
   );
 };
