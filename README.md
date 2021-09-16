@@ -1,21 +1,7 @@
-
-<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu" /></a>
-[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-[![TypeScript](https://badges.frapsoft.com/typescript/version/typescript-next.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
-[![HitCount](http://hits.dwyl.io/wanliyunyan/wanliyunyan/dva-typescript-antd-starter-kit.svg)](http://hits.dwyl.io/wanliyunyan/wanliyunyan/dva-typescript-antd-starter-kit)
-
-# dva-typescript-antd-starter-kit
+# Polkadot-Scanner
 
 A admin dashboard application demo based on antd
 Now it is not perfect, then I will continue to improve the project. 
-If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm intall, You can use it directly.
-
-## Browser Support
-
-![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
---- | --- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | No | No | No | No |
 
 ## Demo
 https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
@@ -102,7 +88,6 @@ dependencies
 -   [query-string](https://github.com/sindresorhus/query-string) Parse and stringify URL query strings.
 -   [react](https://github.com/facebook/react) A declarative, efficient, and flexible JavaScript library for building user interfaces.
 -   [react-dom](https://github.com/facebook/react) This package serves as the entry point of the DOM-related rendering paths. It is intended to be paired with the isomorphic React, which will be shipped as react to npm.
--   [swr](https://github.com/zeit/swr) React Hooks library for remote data fetching.
 
 devDependencies
 -   [@babel/core](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 

@@ -1,9 +1,9 @@
 import { Button, Checkbox, Form, Input } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, CheckOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "dva";
-import React, { useEffect } from "react";
+import React from "react";
 import { GlobalStateProps } from "src/common/interface";
-import styles from "./Login.less";
+import styles from "./Register.less";
 import { useHistory } from "react-router-dom";
 const { Item } = Form;
 
@@ -13,14 +13,10 @@ const Index = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: GlobalStateProps) => state.user);
   const { loading } = user;
-  useEffect(() => {
-    dispatch({
-      type: "user/loginWithToken",
-    })
-  }, [])
+
   const onFinish = (values) => {
     dispatch({
-      type: "user/login",
+      type: "user/register",
       payload: values,
     });
   };
@@ -74,14 +70,31 @@ const Index = () => {
           />
         </Item>
 
-        <Item>
-          <Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Item>
-
-          <Button className={styles.forgot} type="link">
-            Forgot password
-          </Button>
+        <Item
+          name="confirm"
+          dependencies={['password']}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: 'Please confirm your password!',
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('The two passwords that you entered do not match!'));
+              },
+            }),
+          ]}
+        >
+          <Input
+            size="large"
+            prefix={<CheckOutlined className={styles.prefixIcon} />}
+            type="password"
+            placeholder="Confirm Password"
+          />
         </Item>
 
         <Item>
@@ -93,9 +106,9 @@ const Index = () => {
             loading={loading}
             type="primary"
           >
-            SignIn
+            Register
           </Button>
-          Or <Button type="link" onClick={() => history.push("/user/register")} >register now!</Button>
+          Or <Button type="link" onClick={() => history.push("/user/login")}>sign in now!</Button>
         </Item>
       </Form>
     </div>

@@ -47,6 +47,28 @@ export default {
         });
       }
     },
+    *register({ payload }, { call, put }) {
+      try {
+        yield put({
+          type: "querySuccess",
+          payload: { loading: true },
+        });
+        const {isSuccess, csrfToken, detail, token} = yield call(register, payload);
+        if(isSuccess){
+          localStorage.setItem("csrf-token", csrfToken);
+          localStorage.setItem("token", token);
+          message.success(detail);
+          yield put(routerRedux.push("/dashboard/welcome"));
+        }
+      }  catch(e) {
+        console.log(e);
+      } finally {
+        yield put({
+          type: "querySuccess",
+          payload: { loading: false },
+        });
+      }
+    },
     *loginWithToken({},{ call, put }) {
       try {
         const {isSuccess} = yield call(loginWithToken);

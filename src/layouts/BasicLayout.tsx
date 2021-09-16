@@ -145,7 +145,7 @@ const Index = () => {
               src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg"
               alt="logo"
             />
-            <h1>Polkadot App</h1>
+            <h1>Polkadot Scanner</h1>
           </Link>
         </div>
         <Menu
@@ -169,6 +169,7 @@ const Index = () => {
 
           <Divider dashed type="vertical" style={{ height: "50px" }} />
           <Button
+            className={styles.logout}
             htmlType="button"
             onClick={() => {
               dispatch({

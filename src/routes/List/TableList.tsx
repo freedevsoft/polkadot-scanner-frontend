@@ -1,11 +1,11 @@
-import { Button, Card, Space, Input, Form, Table, message, Row, Col, Tooltip, Progress } from "antd";
-import { SearchOutlined, ReloadOutlined, LoadingOutlined } from "@ant-design/icons";
-import React, { useMemo, useState } from "react";
+import { Button, Card, Space, Input, Form, Table, message, Row, Col, Tooltip, Progress, Alert } from "antd";
+import { SearchOutlined, ReloadOutlined, LoadingOutlined, SaveOutlined } from "@ant-design/icons";
+import React, { useEffect, useMemo, useState } from "react";
 import Highlighter from 'react-highlight-words';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import styles from './TableList.less';
 
-export default () => {
+const Index = () => {
   const [data, setData] = useState([]);
   const [api, setApi] = useState<any>();
   const [form] = Form.useForm()
@@ -14,6 +14,9 @@ export default () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const [loadingLastBlock, setLoadingLastBlock] = useState(false);
   const [percent, setPercent] = useState(0);
+  const [connecting, setConnecting] = useState(false);
+  const [endPoint, setEndPoint] = useState(localStorage.getItem("endPoint") || 'wss://rpc.polkadot.io');
+  const [changedEndPoint, setChangedEndPoint] = useState(false);
   const getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
@@ -183,17 +186,22 @@ export default () => {
     message.success(`${totalCount} events have been loaded!`);
   };
   const initApi = async (endpoint) => {
-    setLoadingLastBlock(true);
+    setConnecting(true);
     const wsProvider = new WsProvider(endpoint || 'wss://rpc.polkadot.io');
     const api = await ApiPromise.create({ provider: wsProvider });
+    setConnecting(false);
+    setLoadingLastBlock(true);
     const header = await api.rpc.chain.getHeader();
     form.setFieldsValue({endBlock: header.number.toString()})
     setLoadingLastBlock(false);
     setApi(api);
+    return api;
   }
+  // const connectApi = useMemo( () => initApi(endpoint))
   useMemo(() => {
-    initApi(form.getFieldValue('endPoint')).catch(console.error)
-  }, []);
+    console.log("memo", endPoint)
+    initApi(endPoint).catch((err) => console.log("errrrrr", err.message))
+  }, [endPoint]);
   const getLastBlock = async () => {
     setLoadingLastBlock(true);
     if(api)
@@ -203,15 +211,27 @@ export default () => {
       }
     setLoadingLastBlock(false);
   }
+  const handleFormChange = ([values]) => {
+    if(values.name[0] === "endPoint"){
+      setChangedEndPoint(true);
+    }
+  }
+  const onChangeEndPoint = () => {
+    localStorage.setItem("endPoint", form.getFieldValue('endPoint'));
+    window.location.reload();
+  }
+  
   return (
     <Card bordered={false}>
+      {connecting && <Alert className={styles.alert} message="Waiting to make a connection to the remote endpoint and finishing API initialization." type="warning" />}
       <Form
         form={form}
-        initialValues={{ endPoint:'wss://rpc.polkadot.io', startBlock: '', endBlock: '' }}
+        initialValues={{ endPoint: localStorage.getItem("endPoint") || 'wss://rpc.polkadot.io', startBlock: '', endBlock: '' }}
         layout="vertical"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        onFieldsChange={handleFormChange}
       >
         <Row gutter={12}>
           <Col span={8}>
@@ -275,7 +295,15 @@ export default () => {
               ]}
               hasFeedback
             >
-              <Input size="large" placeholder="Input End Point" />
+              <Input
+                size="large"
+                placeholder="Input End Point"
+                suffix={
+                  <Tooltip title="Make a connection to the remote endpoint">
+                    <Button size="small" disabled={!changedEndPoint} onClick={onChangeEndPoint} shape="circle" icon={ <SaveOutlined /> } />
+                  </Tooltip>
+                }
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -297,3 +325,5 @@ export default () => {
     </Card>
   );
 };
+
+export default React.memo(Index);

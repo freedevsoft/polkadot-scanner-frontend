@@ -208,7 +208,7 @@ module.exports = function (env, mode) {
         filename: "[name].css",
       }),
       new HtmlWebpackPlugin({
-        title: "wanliyunyan",
+        title: "Polkadot Scanner",
         favicon: "src/favicon.ico",
         hash: true,
         minify: true,

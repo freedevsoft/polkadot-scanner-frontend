@@ -12,7 +12,7 @@ export default () => {
             alt=""
             src="https://gw.alipayobjects.com/zos/rmsportal/NGCCBOENpgTXpBWUIPnI.svg"
           />
-          <span>Sign In</span>
+          <span>Polkadot Scanner</span>
         </Link>
       </div>
       {getRouteData("UserLayout").map((item) => {

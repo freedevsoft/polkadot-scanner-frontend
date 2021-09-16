@@ -4,6 +4,7 @@ const BasicLayout = lazy(() => import("../layouts/BasicLayout"));
 const welcome = lazy(() => import("../routes/IndexPage/IndexPage"));
 const tableList = lazy(() => import("../routes/List/TableList"));
 const login = lazy(() => import("../routes/User/Login"));
+const register = lazy(() => import("../routes/User/Register"));
 const userLayout = lazy(() => import("../layouts/UserLayout"));
 
 const data = [
@@ -53,6 +54,11 @@ const data = [
             name: "Sign In",
             path: "login",
             component: login,
+          },
+          {
+            name: "Register",
+            path: "register",
+            component: register,
           },
         ],
       },
